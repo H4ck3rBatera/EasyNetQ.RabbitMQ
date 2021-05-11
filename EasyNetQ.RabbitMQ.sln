@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyNetQ.RabbitMQ.Domain", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyNetQ.RabbitMQ.Api", "EasyNetQ.RabbitMQ.Api\EasyNetQ.RabbitMQ.Api.csproj", "{3D6FD127-9CBF-4743-94CB-A450BEDD6CF1}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E3615A12-33DA-4C37-B940-A3D61067B61D}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{197C5794-CBB8-4DC6-B2AF-BCE706BBDF82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{3D6FD127-9CBF-4743-94CB-A450BEDD6CF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D6FD127-9CBF-4743-94CB-A450BEDD6CF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D6FD127-9CBF-4743-94CB-A450BEDD6CF1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E3615A12-33DA-4C37-B940-A3D61067B61D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3615A12-33DA-4C37-B940-A3D61067B61D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3615A12-33DA-4C37-B940-A3D61067B61D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3615A12-33DA-4C37-B940-A3D61067B61D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{197C5794-CBB8-4DC6-B2AF-BCE706BBDF82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{197C5794-CBB8-4DC6-B2AF-BCE706BBDF82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{197C5794-CBB8-4DC6-B2AF-BCE706BBDF82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{197C5794-CBB8-4DC6-B2AF-BCE706BBDF82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
