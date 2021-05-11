@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Consumer\" />
+    <Folder Include="Publisher\" />
+  </ItemGroup>
+
 </Project>

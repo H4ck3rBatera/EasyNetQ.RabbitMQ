@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  easynetq.rabbitmq.api:
+    image: ${DOCKER_REGISTRY-}easynetqrabbitmqapi
+    build:
+      context: .
+      dockerfile: EasyNetQ.RabbitMQ.Api\Dockerfile
