@@ -1,2 +1,8 @@
 # EasyNetQ.RabbitMQ
 EasyNetQ with RabbitMQ
+
+Docker
+
+.NET 5.0
+
+Worker Pattern
