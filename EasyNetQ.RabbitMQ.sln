@@ -3,9 +3,44 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{FF828CA8-8506-4368-A645-3A8F8C1EFD9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{D50CA261-9662-46C8-8DC6-488F3D05C29D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Worker", "3 - Worker", "{2FA8B9E5-13F9-46F4-B58B-E88BAD4F803F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyNetQ.RabbitMQ.Worker", "EasyNetQ.RabbitMQ.Worker\EasyNetQ.RabbitMQ.Worker.csproj", "{E9DC9EBE-8835-46DA-8FB2-FA88A5066DC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyNetQ.RabbitMQ.Domain", "EasyNetQ.RabbitMQ.Domain\EasyNetQ.RabbitMQ.Domain.csproj", "{1747033C-83B7-4DBA-BF1D-5FF71BD0C4C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyNetQ.RabbitMQ.Api", "EasyNetQ.RabbitMQ.Api\EasyNetQ.RabbitMQ.Api.csproj", "{3D6FD127-9CBF-4743-94CB-A450BEDD6CF1}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9DC9EBE-8835-46DA-8FB2-FA88A5066DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9DC9EBE-8835-46DA-8FB2-FA88A5066DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9DC9EBE-8835-46DA-8FB2-FA88A5066DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9DC9EBE-8835-46DA-8FB2-FA88A5066DC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1747033C-83B7-4DBA-BF1D-5FF71BD0C4C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1747033C-83B7-4DBA-BF1D-5FF71BD0C4C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1747033C-83B7-4DBA-BF1D-5FF71BD0C4C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1747033C-83B7-4DBA-BF1D-5FF71BD0C4C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D6FD127-9CBF-4743-94CB-A450BEDD6CF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D6FD127-9CBF-4743-94CB-A450BEDD6CF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D6FD127-9CBF-4743-94CB-A450BEDD6CF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D6FD127-9CBF-4743-94CB-A450BEDD6CF1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E9DC9EBE-8835-46DA-8FB2-FA88A5066DC5} = {2FA8B9E5-13F9-46F4-B58B-E88BAD4F803F}
+		{1747033C-83B7-4DBA-BF1D-5FF71BD0C4C0} = {D50CA261-9662-46C8-8DC6-488F3D05C29D}
+		{3D6FD127-9CBF-4743-94CB-A450BEDD6CF1} = {FF828CA8-8506-4368-A645-3A8F8C1EFD9E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C223859B-D8DE-4144-BA45-88EDA929E34F}
