@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EasyNetQ.RabbitMQ.Worker\EasyNetQ.RabbitMQ.Worker.csproj" />
+  </ItemGroup>
+
 </Project>

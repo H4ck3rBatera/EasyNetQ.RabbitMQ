@@ -1,3 +1,5 @@
+using EasyNetQ.RabbitMQ.Domain.Support.Extensions;
+using EasyNetQ.RabbitMQ.Worker.Support.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -15,14 +17,17 @@ namespace EasyNetQ.RabbitMQ.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
+
+            services.AddOptions();
+            
+            services
+                .AddDomain(Configuration)
+                .AddWorker(Configuration);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

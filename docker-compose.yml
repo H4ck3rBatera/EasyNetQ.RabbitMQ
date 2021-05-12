@@ -17,7 +17,7 @@ services:
                 - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
                 - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
             environment:
-                - RABBITMQ_DEFAULT_USER=Messaging
+                - RABBITMQ_DEFAULT_USER=messaging
                 - RABBITMQ_DEFAULT_PASS=containers
             networks:
                 - rabbitmq_go_net

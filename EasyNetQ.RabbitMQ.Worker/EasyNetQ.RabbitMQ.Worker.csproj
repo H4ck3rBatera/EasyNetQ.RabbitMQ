@@ -6,11 +6,16 @@
 
   <ItemGroup>
     <PackageReference Include="EasyNetQ" Version="6.3.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Consumer\" />
     <Folder Include="Publisher\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EasyNetQ.RabbitMQ.Domain\EasyNetQ.RabbitMQ.Domain.csproj" />
   </ItemGroup>
 
 </Project>
