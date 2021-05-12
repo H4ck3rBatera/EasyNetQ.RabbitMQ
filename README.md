@@ -5,4 +5,4 @@ Docker
 
 .NET 5.0
 
-Worker Pattern
+Worker Pattern, Option Pattern
