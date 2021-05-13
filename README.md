@@ -8,3 +8,5 @@ Docker
 Worker Pattern, Option Pattern
 
 Swashbuckle.AspNetCore
+
+Dependency Injection
