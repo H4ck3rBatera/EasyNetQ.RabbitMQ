@@ -1,4 +1,6 @@
 ﻿using EasyNetQ.Logging;
+using EasyNetQ.RabbitMQ.Domain.Declare;
+using EasyNetQ.RabbitMQ.Worker.Declare;
 using EasyNetQ.RabbitMQ.Worker.Support.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,18 +17,17 @@ namespace EasyNetQ.RabbitMQ.Worker.Support.Extensions
             LogProvider.SetCurrentLogProvider(ConsoleLogProvider.Instance);
 
             services
-                .Configure<Exchanges>(configuration.GetSection("Exchanges"))
-                .Configure<Queues>(configuration.GetSection("Queues"));
+                .Configure<Exchanges>(configuration.GetSection("RabbitMQ:Exchanges"))
+                .Configure<Queues>(configuration.GetSection("RabbitMQ:Queues"))
+                .Configure<Routings>(configuration.GetSection("RabbitMQ:Routings"));
 
             services.AddSingleton<IBus>((serviceProvider) =>
             {
-                var connectionString = configuration.GetSection("ConnectionStrings:RabbitMQ");
-                var virtualHost = configuration.GetSection("VirtualHosts:VirtualHostKey");
-
+                var connectionString = configuration.GetSection("RabbitMQ:ConnectionStrings:RabbitMQKey");
+                
                 var connectionConfiguration = new ConnectionConfiguration
                 {
                     AmqpConnectionString = new Uri(connectionString.Value),
-                    VirtualHost = virtualHost.Value
                 };
 
                 return RabbitHutch.CreateBus(connectionConfiguration, serviceRegister =>
@@ -38,6 +39,9 @@ namespace EasyNetQ.RabbitMQ.Worker.Support.Extensions
                     }));
                 });
             });
+
+            services
+                .AddScoped<IQueueDeclare, QueueDeclare>();
 
             return services;
         }

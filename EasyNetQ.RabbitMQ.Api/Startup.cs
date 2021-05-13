@@ -19,13 +19,18 @@ namespace EasyNetQ.RabbitMQ.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLogging();
+
             services.AddControllers();
 
             services.AddOptions();
-            
+
             services
                 .AddDomain(Configuration)
                 .AddWorker(Configuration);
+
+            var serviceProvider = services.BuildServiceProvider();
+            serviceProvider.AddWorkerProvider();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
