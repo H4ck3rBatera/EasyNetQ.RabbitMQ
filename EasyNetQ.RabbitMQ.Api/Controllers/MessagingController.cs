@@ -20,7 +20,7 @@ namespace EasyNetQ.RabbitMQ.Api.Controllers
         }
 
         [HttpPost]
-        public async void Post(Message message, CancellationToken cancellationToken)
+        public async void Post(MessageAvailable message, CancellationToken cancellationToken)
         {
             _logger.LogInformation($"Entering {nameof(Post)}");
 
