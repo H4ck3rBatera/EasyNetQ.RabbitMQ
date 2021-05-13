@@ -1,6 +1,8 @@
 ﻿using EasyNetQ.Logging;
 using EasyNetQ.RabbitMQ.Domain.Declare;
+using EasyNetQ.RabbitMQ.Domain.Publish;
 using EasyNetQ.RabbitMQ.Worker.Declare;
+using EasyNetQ.RabbitMQ.Worker.Publish;
 using EasyNetQ.RabbitMQ.Worker.Support.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,7 +43,8 @@ namespace EasyNetQ.RabbitMQ.Worker.Support.Extensions
             });
 
             services
-                .AddScoped<IQueueDeclare, QueueDeclare>();
+                .AddScoped<IQueueDeclare, QueueDeclare>()
+                .AddScoped<IPub, Pub>();
 
             return services;
         }

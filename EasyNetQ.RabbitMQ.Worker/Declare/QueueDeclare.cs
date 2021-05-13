@@ -29,13 +29,13 @@ namespace EasyNetQ.RabbitMQ.Worker.Declare
 
         public async Task DeclareAsync(CancellationToken cancellationToken)
         {
+            _logger.LogInformation($"Entering {nameof(DeclareAsync)}");
+
             try
             {
-                _logger.LogInformation($"Entering {nameof(DeclareAsync)}");
-
                 var exchange = await _advancedBus.ExchangeDeclareAsync(name: _exchanges.ExchangeKey, type: ExchangeType.Direct, cancellationToken: cancellationToken);
                 var queue = await _advancedBus.QueueDeclareAsync(name: _queues.QueueKey, durable: true, exclusive: false, autoDelete: false, cancellationToken: cancellationToken);
-                await _advancedBus.BindAsync(exchange: exchange, queue: queue, routingKey: _routings.RoutingKey, headers: null, cancellationToken: cancellationToken);
+                await _advancedBus.BindAsync(exchange: exchange, queue: queue, routingKey: _routings.RoutingKey, headers: null, cancellationToken: cancellationToken).ConfigureAwait(false);
 
                 _logger.LogInformation($"Bind - Exchange: {_exchanges.ExchangeKey}, Queue: {_queues.QueueKey}, RoutingKey: {_routings.RoutingKey}");
             }

@@ -31,10 +31,19 @@ namespace EasyNetQ.RabbitMQ.Api
 
             var serviceProvider = services.BuildServiceProvider();
             serviceProvider.AddWorkerProvider();
+
+            services.AddSwaggerGen();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "EasyNetQ.RabbitMQ API V1");
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
