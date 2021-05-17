@@ -8,6 +8,7 @@ using System;
 using EasyNetQ.RabbitMQ.Domain.Producers;
 using EasyNetQ.RabbitMQ.Domain.Providers;
 using EasyNetQ.RabbitMQ.Worker.Producers;
+using EasyNetQ.RabbitMQ.Worker.Providers;
 
 namespace EasyNetQ.RabbitMQ.Worker.Support.Extensions
 {
@@ -42,7 +43,7 @@ namespace EasyNetQ.RabbitMQ.Worker.Support.Extensions
             });
 
             services
-                .AddScoped<IQueueProvider, QueueDeclare>()
+                .AddScoped<IQueueProvider, QueueProvider>()
                 .AddScoped<IPublisher, Publisher>();
 
             return services;

@@ -30,6 +30,8 @@ namespace EasyNetQ.RabbitMQ.Worker.Consumers
 
         public async Task SubscribeAsync(Func<string, CancellationToken, Task> processMessageAsync, CancellationToken cancellationToken)
         {
+            _logger.LogInformation($"Entering {nameof(SubscribeAsync)}");
+
             try
             {
                 var exchange = await _advancedBus.ExchangeDeclareAsync(name: _exchanges.ExchangeKey, type: ExchangeType.Direct, cancellationToken: cancellationToken);

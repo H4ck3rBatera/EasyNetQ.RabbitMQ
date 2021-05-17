@@ -9,8 +9,8 @@ namespace EasyNetQ.RabbitMQ.Worker.Support.Extensions
     {
         public static void AddWorkerProvider(this IServiceProvider serviceProvider)
         {
-            var queueDeclare = serviceProvider.GetService<IQueueProvider>();
-            queueDeclare?.DeclareAsync(new CancellationToken()).Wait();
+            var queueProvider = serviceProvider.GetService<IQueueProvider>();
+            queueProvider?.DeclareAsync(new CancellationToken()).Wait();
         }
     }
 }
