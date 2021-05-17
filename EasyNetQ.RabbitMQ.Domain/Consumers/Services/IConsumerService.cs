@@ -5,6 +5,6 @@ namespace EasyNetQ.RabbitMQ.Domain.Consumers.Services
 {
     public interface IConsumerService
     {
-        Task ProcessMessageAsync(string message, CancellationToken cancellationToken);
+        Task SubscribeAsync(CancellationToken cancellationToken);
     }
 }

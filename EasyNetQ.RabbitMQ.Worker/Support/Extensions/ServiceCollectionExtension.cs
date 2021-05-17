@@ -5,8 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
+using EasyNetQ.RabbitMQ.Domain.Consumers;
 using EasyNetQ.RabbitMQ.Domain.Producers;
 using EasyNetQ.RabbitMQ.Domain.Providers;
+using EasyNetQ.RabbitMQ.Worker.Consumers;
 using EasyNetQ.RabbitMQ.Worker.Producers;
 using EasyNetQ.RabbitMQ.Worker.Providers;
 
@@ -26,7 +28,7 @@ namespace EasyNetQ.RabbitMQ.Worker.Support.Extensions
             services.AddSingleton<IBus>((serviceProvider) =>
             {
                 var connectionString = configuration.GetSection("RabbitMQ:ConnectionStrings:RabbitMQKey");
-                
+
                 var connectionConfiguration = new ConnectionConfiguration
                 {
                     AmqpConnectionString = new Uri(connectionString.Value),
@@ -44,6 +46,7 @@ namespace EasyNetQ.RabbitMQ.Worker.Support.Extensions
 
             services
                 .AddScoped<IQueueProvider, QueueProvider>()
+                .AddScoped<ISubscriber, Subscriber>()
                 .AddScoped<IPublisher, Publisher>();
 
             return services;

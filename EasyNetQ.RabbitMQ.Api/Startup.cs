@@ -30,6 +30,7 @@ namespace EasyNetQ.RabbitMQ.Api
                 .AddWorker(Configuration);
 
             var serviceProvider = services.BuildServiceProvider();
+            serviceProvider.AddDomainProvider();
             serviceProvider.AddWorkerProvider();
 
             services.AddSwaggerGen();
