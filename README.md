@@ -12,9 +12,7 @@
 ### Extensions
 
 ```csharp
-public static class ServiceCollectionExtension
-    {
-        public static IServiceCollection AddWorker(this IServiceCollection services, IConfiguration configuration)
+public static IServiceCollection AddWorker(this IServiceCollection services, IConfiguration configuration)
         {
             LogProvider.SetCurrentLogProvider(ConsoleLogProvider.Instance);
 
@@ -49,7 +47,6 @@ public static class ServiceCollectionExtension
 
             return services;
         }
-    }
 ```
 
 ### Queue Provider
@@ -79,8 +76,8 @@ public class QueueProvider : IQueueProvider
 
             try
             {
-                var exchange = await _advancedBus.ExchangeDeclareAsync(name: _exchanges.ExchangeKey, type: ExchangeType.Direct, cancellationToken: cancellationToken);
-                var queue = await _advancedBus.QueueDeclareAsync(name: _queues.QueueKey, durable: true, exclusive: false, autoDelete: false, cancellationToken: cancellationToken);
+                var exchange = await _advancedBus.ExchangeDeclareAsync(name: _exchanges.ExchangeKey, type: ExchangeType.Direct, cancellationToken: cancellationToken).ConfigureAwait(false);
+                var queue = await _advancedBus.QueueDeclareAsync(name: _queues.QueueKey, durable: true, exclusive: false, autoDelete: false, cancellationToken: cancellationToken).ConfigureAwait(false);
                 await _advancedBus.BindAsync(exchange: exchange, queue: queue, routingKey: _routings.RoutingKey, headers: null, cancellationToken: cancellationToken).ConfigureAwait(false);
 
                 _logger.LogInformation($"Bind - Exchange: {_exchanges.ExchangeKey}, Queue: {_queues.QueueKey}, RoutingKey: {_routings.RoutingKey}");
@@ -119,10 +116,10 @@ public class Publisher : IPublisher
 
             try
             {
-                var exchange = await _advancedBus.ExchangeDeclareAsync(name: _exchanges.ExchangeKey, type: ExchangeType.Direct, cancellationToken: cancellationToken);
+                var exchange = await _advancedBus.ExchangeDeclareAsync(name: _exchanges.ExchangeKey, type: ExchangeType.Direct, cancellationToken: cancellationToken).ConfigureAwait(false);
 
                 var body = new Message<MessageModel>(messageAvailable);
-                await _advancedBus.PublishAsync(exchange: exchange, routingKey: _routings.RoutingKey, mandatory: false, message: body, cancellationToken: cancellationToken);
+                await _advancedBus.PublishAsync(exchange: exchange, routingKey: _routings.RoutingKey, mandatory: false, message: body, cancellationToken: cancellationToken).ConfigureAwait(false);
 
                 _logger.LogInformation($"Message: {messageAvailable.Text}");
             }
@@ -162,14 +159,14 @@ public class Subscriber : ISubscriber
 
             try
             {
-                var exchange = await _advancedBus.ExchangeDeclareAsync(name: _exchanges.ExchangeKey, type: ExchangeType.Direct, cancellationToken: cancellationToken);
-                var queue = await _advancedBus.QueueDeclareAsync(name: _queues.QueueKey, durable: true, exclusive: false, autoDelete: false, cancellationToken: cancellationToken);
+                var exchange = await _advancedBus.ExchangeDeclareAsync(name: _exchanges.ExchangeKey, type: ExchangeType.Direct, cancellationToken: cancellationToken).ConfigureAwait(false);
+                var queue = await _advancedBus.QueueDeclareAsync(name: _queues.QueueKey, durable: true, exclusive: false, autoDelete: false, cancellationToken: cancellationToken).ConfigureAwait(false);
                 await _advancedBus.BindAsync(exchange: exchange, queue: queue, routingKey: _routings.RoutingKey, headers: null, cancellationToken: cancellationToken).ConfigureAwait(false);
 
                 _advancedBus.Consume(queue, (body, _, _) => Task.Factory.StartNew(async () =>
                 {
                     var message = Encoding.UTF8.GetString(body);
-                    await processMessageAsync(message, cancellationToken);
+                    await processMessageAsync(message, cancellationToken).ConfigureAwait(false);
                 }, cancellationToken));
             }
             catch (Exception ex)
