@@ -5,7 +5,7 @@ Docker
 
 .NET 5.0
 
-Worker Pattern, Option Pattern
+Worker Pattern, Option Pattern, Provider Pattern
 
 Swashbuckle.AspNetCore
 
