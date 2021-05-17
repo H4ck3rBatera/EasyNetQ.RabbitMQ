@@ -8,6 +8,8 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["EasyNetQ.RabbitMQ.Api/EasyNetQ.RabbitMQ.Api.csproj", "EasyNetQ.RabbitMQ.Api/"]
+COPY ["EasyNetQ.RabbitMQ.Worker/EasyNetQ.RabbitMQ.Worker.csproj", "EasyNetQ.RabbitMQ.Worker/"]
+COPY ["EasyNetQ.RabbitMQ.Domain/EasyNetQ.RabbitMQ.Domain.csproj", "EasyNetQ.RabbitMQ.Domain/"]
 RUN dotnet restore "EasyNetQ.RabbitMQ.Api/EasyNetQ.RabbitMQ.Api.csproj"
 COPY . .
 WORKDIR "/src/EasyNetQ.RabbitMQ.Api"

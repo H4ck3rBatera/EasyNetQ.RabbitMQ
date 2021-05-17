@@ -33,8 +33,8 @@ namespace EasyNetQ.RabbitMQ.Worker.Providers
 
             try
             {
-                var exchange = await _advancedBus.ExchangeDeclareAsync(name: _exchanges.ExchangeKey, type: ExchangeType.Direct, cancellationToken: cancellationToken);
-                var queue = await _advancedBus.QueueDeclareAsync(name: _queues.QueueKey, durable: true, exclusive: false, autoDelete: false, cancellationToken: cancellationToken);
+                var exchange = await _advancedBus.ExchangeDeclareAsync(name: _exchanges.ExchangeKey, type: ExchangeType.Direct, cancellationToken: cancellationToken).ConfigureAwait(false);
+                var queue = await _advancedBus.QueueDeclareAsync(name: _queues.QueueKey, durable: true, exclusive: false, autoDelete: false, cancellationToken: cancellationToken).ConfigureAwait(false);
                 await _advancedBus.BindAsync(exchange: exchange, queue: queue, routingKey: _routings.RoutingKey, headers: null, cancellationToken: cancellationToken).ConfigureAwait(false);
 
                 _logger.LogInformation($"Bind - Exchange: {_exchanges.ExchangeKey}, Queue: {_queues.QueueKey}, RoutingKey: {_routings.RoutingKey}");

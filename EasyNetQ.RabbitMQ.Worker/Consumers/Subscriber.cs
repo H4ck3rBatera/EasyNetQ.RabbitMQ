@@ -34,14 +34,14 @@ namespace EasyNetQ.RabbitMQ.Worker.Consumers
 
             try
             {
-                var exchange = await _advancedBus.ExchangeDeclareAsync(name: _exchanges.ExchangeKey, type: ExchangeType.Direct, cancellationToken: cancellationToken);
-                var queue = await _advancedBus.QueueDeclareAsync(name: _queues.QueueKey, durable: true, exclusive: false, autoDelete: false, cancellationToken: cancellationToken);
+                var exchange = await _advancedBus.ExchangeDeclareAsync(name: _exchanges.ExchangeKey, type: ExchangeType.Direct, cancellationToken: cancellationToken).ConfigureAwait(false);
+                var queue = await _advancedBus.QueueDeclareAsync(name: _queues.QueueKey, durable: true, exclusive: false, autoDelete: false, cancellationToken: cancellationToken).ConfigureAwait(false);
                 await _advancedBus.BindAsync(exchange: exchange, queue: queue, routingKey: _routings.RoutingKey, headers: null, cancellationToken: cancellationToken).ConfigureAwait(false);
 
                 _advancedBus.Consume(queue, (body, _, _) => Task.Factory.StartNew(async () =>
                 {
                     var message = Encoding.UTF8.GetString(body);
-                    await processMessageAsync(message, cancellationToken);
+                    await processMessageAsync(message, cancellationToken).ConfigureAwait(false);
                 }, cancellationToken));
             }
             catch (Exception ex)

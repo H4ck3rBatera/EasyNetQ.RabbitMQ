@@ -19,7 +19,7 @@ namespace EasyNetQ.RabbitMQ.Domain.Consumers.Services
 
         public async Task SubscribeAsync(CancellationToken cancellationToken)
         {
-            await _subscriber.SubscribeAsync(ProcessMessageAsync, cancellationToken);
+            await _subscriber.SubscribeAsync(ProcessMessageAsync, cancellationToken).ConfigureAwait(false);
         }
 
         private async Task ProcessMessageAsync(string message, CancellationToken cancellationToken)
@@ -31,7 +31,7 @@ namespace EasyNetQ.RabbitMQ.Domain.Consumers.Services
                 var messageModel = JsonConvert.DeserializeObject<MessageModel>(message);
 
                 _logger.LogInformation($"Message: {messageModel?.Text}");
-            }, cancellationToken);
+            }, cancellationToken).ConfigureAwait(false);
         }
     }
 }

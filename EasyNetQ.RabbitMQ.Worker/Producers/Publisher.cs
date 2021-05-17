@@ -32,10 +32,10 @@ namespace EasyNetQ.RabbitMQ.Worker.Producers
 
             try
             {
-                var exchange = await _advancedBus.ExchangeDeclareAsync(name: _exchanges.ExchangeKey, type: ExchangeType.Direct, cancellationToken: cancellationToken);
+                var exchange = await _advancedBus.ExchangeDeclareAsync(name: _exchanges.ExchangeKey, type: ExchangeType.Direct, cancellationToken: cancellationToken).ConfigureAwait(false);
 
                 var body = new Message<MessageModel>(messageAvailable);
-                await _advancedBus.PublishAsync(exchange: exchange, routingKey: _routings.RoutingKey, mandatory: false, message: body, cancellationToken: cancellationToken);
+                await _advancedBus.PublishAsync(exchange: exchange, routingKey: _routings.RoutingKey, mandatory: false, message: body, cancellationToken: cancellationToken).ConfigureAwait(false);
 
                 _logger.LogInformation($"Message: {messageAvailable.Text}");
             }

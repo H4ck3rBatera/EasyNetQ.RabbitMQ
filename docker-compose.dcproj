@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>197c5794-cbb8-4dc6-b2af-bce706bbdf82</ProjectGuid>
+    <ProjectGuid>35bd7740-3c33-4803-a3d7-357046713974</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/weatherforecast</DockerServiceUrl>
     <DockerServiceName>easynetq.rabbitmq.api</DockerServiceName>
