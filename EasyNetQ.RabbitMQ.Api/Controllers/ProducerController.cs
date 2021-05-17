@@ -1,34 +1,35 @@
-﻿using EasyNetQ.RabbitMQ.Domain.Publish;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using EasyNetQ.RabbitMQ.Domain.Producers;
+using EasyNetQ.RabbitMQ.Domain.Producers.Models;
 
 namespace EasyNetQ.RabbitMQ.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MessagingController : ControllerBase
+    public class ProducerController : ControllerBase
     {
-        private readonly IPub _pub;
+        private readonly IPublisher _publisher;
         private readonly ILogger _logger;
 
-        public MessagingController(IPub pub, ILogger<MessagingController> logger)
+        public ProducerController(IPublisher publisher, ILogger<ProducerController> logger)
         {
-            _pub = pub;
+            _publisher = publisher;
             _logger = logger;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(MessageAvailable message, CancellationToken cancellationToken)
+        public async Task<IActionResult> Post(MessageModel message, CancellationToken cancellationToken)
         {
             _logger.LogInformation($"Entering {nameof(Post)}");
 
             try
             {
-                await _pub.PublishAsync(message, cancellationToken).ConfigureAwait(false);
+                await _publisher.PublishAsync(message, cancellationToken).ConfigureAwait(false);
 
                 _logger.LogInformation($"Message: {message.Text}");
 

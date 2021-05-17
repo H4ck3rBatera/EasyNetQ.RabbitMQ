@@ -1,14 +1,13 @@
 ﻿using EasyNetQ.Logging;
-using EasyNetQ.RabbitMQ.Domain.Declare;
-using EasyNetQ.RabbitMQ.Domain.Publish;
-using EasyNetQ.RabbitMQ.Worker.Declare;
-using EasyNetQ.RabbitMQ.Worker.Publish;
 using EasyNetQ.RabbitMQ.Worker.Support.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
+using EasyNetQ.RabbitMQ.Domain.Producers;
+using EasyNetQ.RabbitMQ.Domain.Providers;
+using EasyNetQ.RabbitMQ.Worker.Producers;
 
 namespace EasyNetQ.RabbitMQ.Worker.Support.Extensions
 {
@@ -43,8 +42,8 @@ namespace EasyNetQ.RabbitMQ.Worker.Support.Extensions
             });
 
             services
-                .AddScoped<IQueueDeclare, QueueDeclare>()
-                .AddScoped<IPub, Pub>();
+                .AddScoped<IQueueProvider, QueueDeclare>()
+                .AddScoped<IPublisher, Publisher>();
 
             return services;
         }

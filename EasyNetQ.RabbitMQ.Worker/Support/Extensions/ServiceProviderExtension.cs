@@ -1,18 +1,16 @@
-﻿using EasyNetQ.RabbitMQ.Domain.Declare;
-using System;
+﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading;
+using EasyNetQ.RabbitMQ.Domain.Providers;
 
 namespace EasyNetQ.RabbitMQ.Worker.Support.Extensions
 {
     public static class ServiceProviderExtension
     {
-        public static IServiceProvider AddWorkerProvider(this IServiceProvider serviceProvider)
+        public static void AddWorkerProvider(this IServiceProvider serviceProvider)
         {
-            var queueDeclare = serviceProvider.GetService<IQueueDeclare>();
-            queueDeclare.DeclareAsync(new CancellationToken()).Wait();
-
-            return serviceProvider;
+            var queueDeclare = serviceProvider.GetService<IQueueProvider>();
+            queueDeclare?.DeclareAsync(new CancellationToken()).Wait();
         }
     }
 }

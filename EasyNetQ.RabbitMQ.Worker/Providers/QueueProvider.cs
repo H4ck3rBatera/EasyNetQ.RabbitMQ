@@ -1,15 +1,15 @@
-﻿using EasyNetQ.RabbitMQ.Domain.Declare;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using EasyNetQ.RabbitMQ.Domain.Providers;
 using EasyNetQ.RabbitMQ.Worker.Support.Options;
 using EasyNetQ.Topology;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace EasyNetQ.RabbitMQ.Worker.Declare
+namespace EasyNetQ.RabbitMQ.Worker.Providers
 {
-    public class QueueDeclare : IQueueDeclare
+    public class QueueProvider : IQueueProvider
     {
         private readonly IAdvancedBus _advancedBus;
         private readonly ILogger _logger;
@@ -17,7 +17,7 @@ namespace EasyNetQ.RabbitMQ.Worker.Declare
         private readonly Queues _queues;
         private readonly Routings _routings;
 
-        public QueueDeclare(IBus bus, ILogger<QueueDeclare> logger,
+        public QueueProvider(IBus bus, ILogger<QueueProvider> logger,
             IOptions<Exchanges> exchanges, IOptions<Queues> queues, IOptions<Routings> routings)
         {
             _advancedBus = bus.Advanced;
